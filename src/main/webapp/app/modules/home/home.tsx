@@ -21,8 +21,8 @@ export class Home extends React.Component<IHomeProp> {
     return (
       <Row>
         <Col md="9">
-          <h2>Welcome, Java Hipster!</h2>
-          <p className="lead">This is your homepage</p>
+          <h2>These are your words</h2>
+          {/*<p className="lead">This is your homepage</p>*/}
           {account && account.login ? (
             <div>
               <Alert color="success">You are logged in as user {account.login}.</Alert>
@@ -30,24 +30,29 @@ export class Home extends React.Component<IHomeProp> {
           ) : (
             <div>
               <Alert color="warning">
-                If you want to
                 <Link to="/login" className="alert-link">
                   {' '}
-                  sign in
+                  Sign in
                 </Link>
+                {/*
                 , you can try the default accounts:
                 <br />- Administrator (login=&quot;admin&quot; and password=&quot;admin&quot;)
                 <br />- User (login=&quot;user&quot; and password=&quot;user&quot;).
+                */}
               </Alert>
 
+              {/*
               <Alert color="warning">
                 You do not have an account yet?&nbsp;
                 <Link to="/register" className="alert-link">
                   Register a new account
                 </Link>
               </Alert>
+              */}
             </div>
           )}
+
+          {/*
           <p>If you have any question on JHipster:</p>
 
           <ul>
@@ -76,14 +81,16 @@ export class Home extends React.Component<IHomeProp> {
                 follow @java_hipster on Twitter
               </a>
             </li>
-          </ul>
+          </ul>*/}
 
+          {/*
           <p>
             If you like JHipster, do not forget to give us a star on{' '}
             <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">
               Github
             </a>!
           </p>
+          */}
         </Col>
         <Col md="3" className="pad">
           <span className="hipster rounded" />
