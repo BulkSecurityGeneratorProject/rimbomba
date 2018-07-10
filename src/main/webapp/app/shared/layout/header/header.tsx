@@ -29,7 +29,7 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
   };
 
   renderDevRibbon = () =>
-    this.props.isInProduction === true ? (
+    this.props.isInProduction === false ? (
       <div className="ribbon dev">
         <a href="">Development</a>
       </div>
