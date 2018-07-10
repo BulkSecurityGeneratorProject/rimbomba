@@ -28,6 +28,7 @@
       "en"
     ],
     "clientFramework": "react",
-    "jhiPrefix": "jhi"
+    "jhiPrefix": "jhi",
+    "herokuDeployType": "git"
   }
 }
