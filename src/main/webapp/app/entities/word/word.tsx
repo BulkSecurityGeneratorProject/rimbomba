@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
 // tslint:disable-next-line:no-unused-variable
-import { ICrudGetAllAction, TextFormat } from 'react-jhipster';
+import { ICrudGetAllAction } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -36,7 +36,6 @@ export class Word extends React.Component<IWordProps> {
                 <th>ID</th>
                 <th>Word</th>
                 <th>Meaning</th>
-                <th>Date Added</th>
                 <th />
               </tr>
             </thead>
@@ -50,9 +49,6 @@ export class Word extends React.Component<IWordProps> {
                   </td>
                   <td>{word.word}</td>
                   <td>{word.meaning}</td>
-                  <td>
-                    <TextFormat type="date" value={word.dateAdded} format={APP_LOCAL_DATE_FORMAT} />
-                  </td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${word.id}`} color="info" size="sm">

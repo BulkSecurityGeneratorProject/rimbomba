@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Row, Col } from 'reactstrap';
 // tslint:disable-next-line:no-unused-variable
-import { ICrudGetAction, TextFormat } from 'react-jhipster';
+import { ICrudGetAction } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -36,12 +36,6 @@ export class WordDetail extends React.Component<IWordDetailProps> {
               <span id="meaning">Meaning</span>
             </dt>
             <dd>{wordEntity.meaning}</dd>
-            <dt>
-              <span id="dateAdded">Date Added</span>
-            </dt>
-            <dd>
-              <TextFormat value={wordEntity.dateAdded} type="date" format={APP_LOCAL_DATE_FORMAT} />
-            </dd>
           </dl>
           <Button tag={Link} to="/entity/word" replace color="info">
             <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>

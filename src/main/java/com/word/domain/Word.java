@@ -5,7 +5,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -28,10 +27,6 @@ public class Word implements Serializable {
 
     @Column(name = "meaning")
     private String meaning;
-
-    @NotNull
-    @Column(name = "date_added", nullable = false)
-    private LocalDate dateAdded;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -67,19 +62,6 @@ public class Word implements Serializable {
     public void setMeaning(String meaning) {
         this.meaning = meaning;
     }
-
-    public LocalDate getDateAdded() {
-        return dateAdded;
-    }
-
-    public Word dateAdded(LocalDate dateAdded) {
-        this.dateAdded = dateAdded;
-        return this;
-    }
-
-    public void setDateAdded(LocalDate dateAdded) {
-        this.dateAdded = dateAdded;
-    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -108,7 +90,6 @@ public class Word implements Serializable {
             "id=" + getId() +
             ", word='" + getWord() + "'" +
             ", meaning='" + getMeaning() + "'" +
-            ", dateAdded='" + getDateAdded() + "'" +
             "}";
     }
 }

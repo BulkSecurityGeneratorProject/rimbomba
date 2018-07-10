@@ -100,20 +100,6 @@ export class WordUpdate extends React.Component<IWordUpdateProps, IWordUpdateSta
                   </Label>
                   <AvField id="word-meaning" type="text" name="meaning" />
                 </AvGroup>
-                <AvGroup>
-                  <Label id="dateAddedLabel" for="dateAdded">
-                    Date Added
-                  </Label>
-                  <AvField
-                    id="word-dateAdded"
-                    type="date"
-                    className="form-control"
-                    name="dateAdded"
-                    validate={{
-                      required: { value: true, errorMessage: 'This field is required.' }
-                    }}
-                  />
-                </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/word" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />&nbsp;
                   <span className="d-none d-md-inline">Back</span>

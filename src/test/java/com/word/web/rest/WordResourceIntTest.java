@@ -21,8 +21,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
 
 
@@ -46,9 +44,6 @@ public class WordResourceIntTest {
 
     private static final String DEFAULT_MEANING = "AAAAAAAAAA";
     private static final String UPDATED_MEANING = "BBBBBBBBBB";
-
-    private static final LocalDate DEFAULT_DATE_ADDED = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATE_ADDED = LocalDate.now(ZoneId.systemDefault());
 
     @Autowired
     private WordRepository wordRepository;
@@ -90,8 +85,7 @@ public class WordResourceIntTest {
     public static Word createEntity(EntityManager em) {
         Word word = new Word()
             .word(DEFAULT_WORD)
-            .meaning(DEFAULT_MEANING)
-            .dateAdded(DEFAULT_DATE_ADDED);
+            .meaning(DEFAULT_MEANING);
         return word;
     }
 
@@ -117,7 +111,6 @@ public class WordResourceIntTest {
         Word testWord = wordList.get(wordList.size() - 1);
         assertThat(testWord.getWord()).isEqualTo(DEFAULT_WORD);
         assertThat(testWord.getMeaning()).isEqualTo(DEFAULT_MEANING);
-        assertThat(testWord.getDateAdded()).isEqualTo(DEFAULT_DATE_ADDED);
     }
 
     @Test
@@ -159,24 +152,6 @@ public class WordResourceIntTest {
 
     @Test
     @Transactional
-    public void checkDateAddedIsRequired() throws Exception {
-        int databaseSizeBeforeTest = wordRepository.findAll().size();
-        // set the field null
-        word.setDateAdded(null);
-
-        // Create the Word, which fails.
-
-        restWordMockMvc.perform(post("/api/words")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(word)))
-            .andExpect(status().isBadRequest());
-
-        List<Word> wordList = wordRepository.findAll();
-        assertThat(wordList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void getAllWords() throws Exception {
         // Initialize the database
         wordRepository.saveAndFlush(word);
@@ -187,8 +162,7 @@ public class WordResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(word.getId().intValue())))
             .andExpect(jsonPath("$.[*].word").value(hasItem(DEFAULT_WORD.toString())))
-            .andExpect(jsonPath("$.[*].meaning").value(hasItem(DEFAULT_MEANING.toString())))
-            .andExpect(jsonPath("$.[*].dateAdded").value(hasItem(DEFAULT_DATE_ADDED.toString())));
+            .andExpect(jsonPath("$.[*].meaning").value(hasItem(DEFAULT_MEANING.toString())));
     }
     
 
@@ -204,8 +178,7 @@ public class WordResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(word.getId().intValue()))
             .andExpect(jsonPath("$.word").value(DEFAULT_WORD.toString()))
-            .andExpect(jsonPath("$.meaning").value(DEFAULT_MEANING.toString()))
-            .andExpect(jsonPath("$.dateAdded").value(DEFAULT_DATE_ADDED.toString()));
+            .andExpect(jsonPath("$.meaning").value(DEFAULT_MEANING.toString()));
     }
     @Test
     @Transactional
@@ -229,8 +202,7 @@ public class WordResourceIntTest {
         em.detach(updatedWord);
         updatedWord
             .word(UPDATED_WORD)
-            .meaning(UPDATED_MEANING)
-            .dateAdded(UPDATED_DATE_ADDED);
+            .meaning(UPDATED_MEANING);
 
         restWordMockMvc.perform(put("/api/words")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -243,7 +215,6 @@ public class WordResourceIntTest {
         Word testWord = wordList.get(wordList.size() - 1);
         assertThat(testWord.getWord()).isEqualTo(UPDATED_WORD);
         assertThat(testWord.getMeaning()).isEqualTo(UPDATED_MEANING);
-        assertThat(testWord.getDateAdded()).isEqualTo(UPDATED_DATE_ADDED);
     }
 
     @Test

@@ -11,13 +11,6 @@
         {
             "fieldName": "meaning",
             "fieldType": "String"
-        },
-        {
-            "fieldName": "dateAdded",
-            "fieldType": "LocalDate",
-            "fieldValidateRules": [
-                "required"
-            ]
         }
     ],
     "relationships": [],
