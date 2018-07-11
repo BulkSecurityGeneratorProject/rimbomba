@@ -29,6 +29,7 @@
     ],
     "clientFramework": "react",
     "jhiPrefix": "jhi",
-    "herokuDeployType": "git"
+    "herokuDeployType": "git",
+    "herokuAppName": "rimbomba"
   }
 }
